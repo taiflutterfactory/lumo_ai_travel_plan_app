@@ -1,0 +1,43 @@
+# Flutter/Dart 基本忽略項
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+.melos_workspace/
+.pub-cache/
+.dart_tool/
+.idea/
+android/.gradle/
+android/captures/
+ios/Flutter/.symlinks/
+ios/Pods/
+ios/Runner.xcworkspace/
+macos/Flutter/ephemeral/
+macos/Pods/
+web/.dart_tool/
+
+# Android 特有檔案
+*.iml
+.gradle/
+local.properties
+android/key.properties
+
+# iOS/macOS 特有檔案
+*.xcworkspace
+*.xcuserstate
+DerivedData/
+*.lock
+
+# VSCode
+.vscode/
+
+# 輸出與記錄檔
+*.log
+*.tmp
+*.swp
+
+# 用來儲存環境變數與個人開發機敏資訊的檔案
+assets/.env
+android/gradle.properties
