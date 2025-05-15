@@ -1,0 +1,50 @@
+# .editorconfig
+
+root = true
+
+# 所有檔案預設規則
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Dart 檔案
+[*.dart]
+indent_size = 2
+
+# YAML（pubspec.yaml）
+[*.yaml]
+indent_size = 2
+indent_style = space
+
+# Kotlin / Java 檔案
+[*.kt]
+indent_size = 4
+
+[*.kts]
+indent_size = 4
+
+[*.java]
+indent_size = 4
+
+# Markdown 文件
+[*.md]
+trim_trailing_whitespace = false  # 避免刪除有意義的空白行
+insert_final_newline = true
+
+# JSON 檔案
+[*.json]
+indent_size = 2
+
+# Gradle 設定檔
+[*.gradle]
+indent_size = 4
+
+# Bash / Shell Script
+[*.sh]
+end_of_line = lf
+indent_style = space
+indent_size = 2

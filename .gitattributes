@@ -1,0 +1,49 @@
+# === 跨平台統一換行符設定 ===
+# 文字檔案使用 LF 作為行尾（避免 Windows 的 CRLF）
+* text=auto eol=lf
+
+# === Dart / Flutter 相關語言 ===
+*.dart     text
+*.yaml     text
+*.json     text
+*.html     text
+*.css      text
+*.js       text
+*.ts       text
+*.xml      text
+*.gradle   text
+*.properties text
+*.kt       text
+*.kts      text
+*.java     text
+
+# === Markdown / 文本檔案 ===
+*.md       text
+*.txt      text
+*.gitignore text
+*.gitattributes text
+
+# === Shell / Batch Scripts ===
+*.sh       text eol=lf
+*.bat      text eol=crlf
+*.ps1      text eol=crlf
+
+# === 二進位檔案（不要自動轉換行尾或合併）===
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.ico      binary
+*.pdf      binary
+*.ttf      binary
+*.otf      binary
+*.woff     binary
+*.woff2    binary
+*.mp3      binary
+*.mp4      binary
+
+# === VSCode 設定檔 ===
+.vscode/*  text
+
+# === 禁止合併 lock 檔（避免自動解決衝突）===
+pubspec.lock merge=ours
