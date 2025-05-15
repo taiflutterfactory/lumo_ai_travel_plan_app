@@ -4,7 +4,7 @@
             "outputFile": "com.example.lumo_ai_travel_plan_app-mergeDebugResources-29:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "/Users/meow/.gradle/caches/transforms-3/ffa0d1acab41d5ae8d8bbd8c94dad9bc/transformed/browser-1.8.0/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "C:\\Users\\tai\\.gradle\\caches\\transforms-3\\ffa0d1acab41d5ae8d8bbd8c94dad9bc\\transformed\\browser-1.8.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/meow/.gradle/caches/transforms-3/66fa901d95b41f9a13115d0c271b8a3a/transformed/core-1.13.1/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "C:\\Users\\tai\\.gradle\\caches\\transforms-3\\66fa901d95b41f9a13115d0c271b8a3a\\transformed\\core-1.13.1\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
