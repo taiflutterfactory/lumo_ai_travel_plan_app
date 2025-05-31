@@ -38,7 +38,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
         isLoading = false;
       });
     } catch (e) {
-      print('取得詳細資料失敗: $e');
+      print('Get details fail: $e');
       setState(() {
         isLoading = false;
       });
@@ -162,7 +162,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                       const SizedBox(height: 8,),
                       Text(placeDetail!.formatted_address!, style: const TextStyle(fontSize: 16,)),
                       const SizedBox(height: 8,),
-                      ElevatedButtonWidget(buttonName: "想去就馬上出發", onPressedCallback: _onRoad,),
+                      ElevatedButtonWidget(buttonName: "Plan a route", onPressedCallback: _onRoad,),
                       const SizedBox(height: 8,),
                       if (phoneNumber != null)
                         Row(
@@ -183,7 +183,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                             const SizedBox(width: 4),
                             GestureDetector(
                               onTap: () => _launchURL(website),
-                              child: const Text('官方網站', style: TextStyle(color: Colors.blue)),
+                              child: const Text('Official web', style: TextStyle(color: Colors.blue)),
                             ),
                           ],
                         ),
@@ -200,7 +200,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        sectionTitle('景點介紹'),
+                        sectionTitle('Attraction Introduction'),
                         const SizedBox(height: 8),
                         Text(placeDetail!.editorial_summary!.overview),
                       ],
@@ -216,7 +216,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        sectionTitle('營業時間'),
+                        sectionTitle('Open Time'),
                         const SizedBox(height: 8),
                         ...openingHours.map((day) => Text(day)),
                       ],
@@ -232,7 +232,7 @@ class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        sectionTitle('使用者評論'),
+                        sectionTitle('User Reviews'),
                         const SizedBox(height: 8),
                         ...reviews.take(3).map((review) => reviewTile(review)),
                       ],
