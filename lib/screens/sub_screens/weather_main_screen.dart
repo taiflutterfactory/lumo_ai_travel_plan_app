@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../api/weather_api_services/weather_service.dart';
 import '../../globals.dart' as globals;
 
-class WeatherMainPage extends StatefulWidget {
-  const WeatherMainPage({super.key});
+class WeatherMainScreen extends StatefulWidget {
+  const WeatherMainScreen({super.key});
 
   @override
-  State<WeatherMainPage> createState() => _WeatherMainPage();
+  State<WeatherMainScreen> createState() => _WeatherMainScreen();
 }
 
-class _WeatherMainPage extends State<WeatherMainPage> {
+class _WeatherMainScreen extends State<WeatherMainScreen> {
   Future<void> _weatherState() async {
     try {
       String apiKey = globals.weatherApiKey;

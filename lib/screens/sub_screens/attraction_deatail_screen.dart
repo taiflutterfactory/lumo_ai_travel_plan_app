@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:lumo_ai_travel_plan_app/pages/sub_pages/map_draw_route_page.dart';
+import 'package:lumo_ai_travel_plan_app/screens/sub_screens/map_draw_route_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../api/map_api_services/google_map_service.dart';
@@ -11,16 +11,16 @@ import '../../api/map_models/nearby_detail_response.dart';
 import '../../globals.dart' as globals;
 import '../../widget/elevated_button_widget.dart';
 
-class PlaceDetailPage extends StatefulWidget {
+class PlaceDetailScreen extends StatefulWidget {
   final String placeId;
 
-  const PlaceDetailPage({super.key, required this.placeId});
+  const PlaceDetailScreen({super.key, required this.placeId});
 
   @override
-  State<StatefulWidget> createState() => _PlaceDetailPageState();
+  State<StatefulWidget> createState() => _PlaceDetailScreenState();
 }
 
-class _PlaceDetailPageState extends State<PlaceDetailPage> {
+class _PlaceDetailScreenState extends State<PlaceDetailScreen> {
   NearbyDetailResult? placeDetail;
   bool isLoading = true;
   late final PageController _pageController;
@@ -49,7 +49,7 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => RoutePlannerPage(
+        builder: (context) => MapDrawRouteScreen(
           destination: LatLng(
           placeDetail!.geometry!.location.lat,
             placeDetail!.geometry!.location.lng
@@ -105,142 +105,144 @@ class _PlaceDetailPageState extends State<PlaceDetailPage> {
     final openingHours = placeDetail?.opening_hours?.weekday_text ?? [];
     final website = placeDetail?.website;
     final phoneNumber = placeDetail?.formatted_phone_number;
-    final address = placeDetail?.formatted_address;
     final rating = placeDetail?.rating;
     final reviews = placeDetail?.reviews ?? [];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: null,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 照片自動輪播
-            if (photos.isNotEmpty)
-              SizedBox(
-                height: 250,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: photos.length,
-                  itemBuilder: (context, index) {
-                    final photoUrl = getPhotoUrl(photos[index].photo_reference);
-                    return Image.network(photoUrl, fit: BoxFit.cover,);
-                  },
-                ),
-              ),
+    return ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 照片自動輪播
+                if (photos.isNotEmpty)
+                  SizedBox(
+                    height: 250,
+                    child: PageView.builder(
+                      controller: _pageController,
+                      itemCount: photos.length,
+                      itemBuilder: (context, index) {
+                        final photoUrl = getPhotoUrl(photos[index].photo_reference);
+                        return Image.network(photoUrl, fit: BoxFit.cover,);
+                      },
+                    ),
+                  ),
 
-            // 基本資料區
-            Padding(
-                padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+                // 基本資料區
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                          child: AutoSizeText(
-                            placeDetail!.name,
-                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AutoSizeText(
+                              placeDetail!.name,
+                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
+                          const SizedBox(width: 8,),
+                          if (rating != null)
+                            Row(
+                              children: [
+                                const Icon(Icons.star, color: Colors.amber,),
+                                const SizedBox(width: 4,),
+                                Text("$rating", style: const TextStyle(fontSize: 16),),
+                              ],
+                            ),
+                        ],
                       ),
-                      const SizedBox(width: 8,),
-                      if (rating != null)
+                      const SizedBox(height: 8,),
+                      Text(placeDetail!.formatted_address!, style: const TextStyle(fontSize: 16,)),
+                      const SizedBox(height: 8,),
+                      ElevatedButtonWidget(buttonName: "想去就馬上出發", onPressedCallback: _onRoad,),
+                      const SizedBox(height: 8,),
+                      if (phoneNumber != null)
                         Row(
                           children: [
-                            const Icon(Icons.star, color: Colors.amber,),
+                            const Icon(Icons.phone),
                             const SizedBox(width: 4,),
-                            Text("$rating", style: const TextStyle(fontSize: 16),),
+                            GestureDetector(
+                              onTap: () => _makePhoneCall(phoneNumber),
+                              child: Text(phoneNumber, style: const TextStyle(color: Colors.blue),),
+                            )
+                          ],
+                        ),
+                      const SizedBox(height: 8,),
+                      if (website != null)
+                        Row(
+                          children: [
+                            const Icon(Icons.language),
+                            const SizedBox(width: 4),
+                            GestureDetector(
+                              onTap: () => _launchURL(website),
+                              child: const Text('官方網站', style: TextStyle(color: Colors.blue)),
+                            ),
                           ],
                         ),
                     ],
                   ),
-                  const SizedBox(height: 8,),
-                  Text(placeDetail!.formatted_address!, style: const TextStyle(fontSize: 16,)),
-                  const SizedBox(height: 8,),
-                  ElevatedButtonWidget(buttonName: "想去就馬上出發", onPressedCallback: _onRoad,),
-                  const SizedBox(height: 8,),
-                  if (phoneNumber != null)
-                    Row(
+                ),
+
+                const Divider(),
+
+                // ✏️ 景點介紹
+                if (placeDetail?.editorial_summary?.overview != null)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.phone),
-                        const SizedBox(width: 4,),
-                        GestureDetector(
-                          onTap: () => _makePhoneCall(phoneNumber),
-                          child: Text(phoneNumber, style: const TextStyle(color: Colors.blue),),
-                        )
+                        sectionTitle('景點介紹'),
+                        const SizedBox(height: 8),
+                        Text(placeDetail!.editorial_summary!.overview),
                       ],
                     ),
-                  const SizedBox(height: 8,),
-                  if (website != null)
-                    Row(
+                  ),
+
+                const Divider(),
+
+                // 🕐 營業時間
+                if (openingHours.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.language),
-                        const SizedBox(width: 4),
-                        GestureDetector(
-                          onTap: () => _launchURL(website),
-                          child: const Text('官方網站', style: TextStyle(color: Colors.blue)),
-                        ),
+                        sectionTitle('營業時間'),
+                        const SizedBox(height: 8),
+                        ...openingHours.map((day) => Text(day)),
                       ],
                     ),
-                ],
-              ),
+                  ),
+
+                const Divider(),
+
+                // 🗣️ 使用者評論
+                if (reviews.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        sectionTitle('使用者評論'),
+                        const SizedBox(height: 8),
+                        ...reviews.take(3).map((review) => reviewTile(review)),
+                      ],
+                    ),
+                  ),
+
+                const SizedBox(height: 24),
+              ],
             ),
-
-            const Divider(),
-
-            // ✏️ 景點介紹
-            if (placeDetail?.editorial_summary?.overview != null)
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    sectionTitle('景點介紹'),
-                    const SizedBox(height: 8),
-                    Text(placeDetail!.editorial_summary!.overview),
-                  ],
-                ),
-              ),
-
-            const Divider(),
-
-            // 🕐 營業時間
-            if (openingHours.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    sectionTitle('營業時間'),
-                    const SizedBox(height: 8),
-                    ...openingHours.map((day) => Text(day)),
-                  ],
-                ),
-              ),
-
-            const Divider(),
-
-            // 🗣️ 使用者評論
-            if (reviews.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    sectionTitle('使用者評論'),
-                    const SizedBox(height: 8),
-                    ...reviews.take(3).map((review) => reviewTile(review)),
-                  ],
-                ),
-              ),
-
-            const SizedBox(height: 24),
-          ],
-        ),
+          )
       )
     );
   }

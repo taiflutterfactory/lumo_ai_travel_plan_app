@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'nearby_detail_response.g.dart';
@@ -19,6 +21,7 @@ class NearbyDetailResult {
   final String? formatted_phone_number;
   final String? website;
   final double? rating;
+  final int? user_ratings_total;
   final List<Photo>? photos;
   final OpeningHours? opening_hours;
   final EditorialSummary? editorial_summary;
@@ -31,6 +34,7 @@ class NearbyDetailResult {
     this.formatted_phone_number,
     this.website,
     this.rating,
+    this.user_ratings_total,
     this.photos,
     this.opening_hours,
     this.editorial_summary,

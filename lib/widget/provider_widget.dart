@@ -1,31 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
-class NaviGationBarProvider extends ChangeNotifier {
-  int _selectedIndex = 0;
-
-  int get selectedIndex => _selectedIndex;
-
-  void setSelectedIndex(int index) {
-    _selectedIndex = index;
-    notifyListeners();
-  }
-}
-
-class SearchBarProvider extends ChangeNotifier {
-  String? _selectedPlaceName;
-  String? get selectedPlaceName => _selectedPlaceName;
-
-  void updateSelectedPlace(String? newName) {
-    _selectedPlaceName = newName;
-    notifyListeners();
-  }
-
-  void clearSelectedPlace() {
-    _selectedPlaceName = null;
-    notifyListeners();
-  }
-}
+// class SearchBarProvider extends ChangeNotifier {
+//   String? _selectedPlaceName;
+//   String? get selectedPlaceName => _selectedPlaceName;
+//
+//   void updateSelectedPlace(String? newName) {
+//     _selectedPlaceName = newName;
+//     notifyListeners();
+//   }
+//
+//   void clearSelectedPlace() {
+//     _selectedPlaceName = null;
+//     notifyListeners();
+//   }
+// }
 
 class LocationProvider with ChangeNotifier {
   double? latitude;
