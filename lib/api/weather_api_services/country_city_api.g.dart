@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather_api.dart';
+part of 'country_city_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,13 +8,13 @@ part of 'weather_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _WeatherApi implements WeatherApi {
-  _WeatherApi(
+class _CountryCityApi implements CountryCityApi {
+  _CountryCityApi(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://api.openweathermap.org/data/2.5/';
+    baseUrl ??= 'https://wft-geo-db.p.rapidapi.com/v1/geo/';
   }
 
   final Dio _dio;
@@ -24,29 +24,19 @@ class _WeatherApi implements WeatherApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<WeatherResponse> getCurrentWeather(
-    String city,
-    String apiKey,
-    String units,
-    String lang,
-  ) async {
+  Future<CountryResponse> getCountries(int limit) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'q': city,
-      r'appid': apiKey,
-      r'units': units,
-      r'lang': lang,
-    };
+    final queryParameters = <String, dynamic>{r'limit': limit};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<WeatherResponse>(Options(
+    final _options = _setStreamType<CountryResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'weather',
+          'countries',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -56,9 +46,9 @@ class _WeatherApi implements WeatherApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late WeatherResponse _value;
+    late CountryResponse _value;
     try {
-      _value = WeatherResponse.fromJson(_result.data!);
+      _value = CountryResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -67,29 +57,25 @@ class _WeatherApi implements WeatherApi {
   }
 
   @override
-  Future<ForecastResponse> getForecast(
-    String city,
-    String apiKey,
-    String units,
-    String lang,
+  Future<CityResponse> getCitiesByCountry(
+    String sort,
+    int limit,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'q': city,
-      r'appid': apiKey,
-      r'units': units,
-      r'lang': lang,
+      r'countryIds': sort,
+      r'limit': limit,
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ForecastResponse>(Options(
+    final _options = _setStreamType<CityResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          'forecast',
+          'cities',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -99,9 +85,9 @@ class _WeatherApi implements WeatherApi {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ForecastResponse _value;
+    late CityResponse _value;
     try {
-      _value = ForecastResponse.fromJson(_result.data!);
+      _value = CityResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

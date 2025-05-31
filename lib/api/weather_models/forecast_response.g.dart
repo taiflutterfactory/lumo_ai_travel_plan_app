@@ -1,41 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather_response.dart';
+part of 'forecast_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) =>
-    WeatherResponse(
+ForecastResponse _$ForecastResponseFromJson(Map<String, dynamic> json) =>
+    ForecastResponse(
+      list: (json['list'] as List<dynamic>)
+          .map((e) => ForecastItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ForecastResponseToJson(ForecastResponse instance) =>
+    <String, dynamic>{
+      'list': instance.list,
+    };
+
+ForecastItem _$ForecastItemFromJson(Map<String, dynamic> json) => ForecastItem(
       main: Main.fromJson(json['main'] as Map<String, dynamic>),
       weather: (json['weather'] as List<dynamic>)
           .map((e) => Weather.fromJson(e as Map<String, dynamic>))
           .toList(),
-      name: json['name'] as String,
-      wind: Wind.fromJson(json['wind'] as Map<String, dynamic>),
+      dateTime: json['dt_txt'] as String,
     );
 
-Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
+Map<String, dynamic> _$ForecastItemToJson(ForecastItem instance) =>
     <String, dynamic>{
       'main': instance.main,
       'weather': instance.weather,
-      'name': instance.name,
-      'wind': instance.wind,
+      'dt_txt': instance.dateTime,
     };
 
 Main _$MainFromJson(Map<String, dynamic> json) => Main(
       temp: (json['temp'] as num).toDouble(),
-      tempMin: (json['temp_min'] as num).toDouble(),
-      tempMax: (json['temp_max'] as num).toDouble(),
-      humidity: (json['humidity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
       'temp': instance.temp,
-      'temp_min': instance.tempMin,
-      'temp_max': instance.tempMax,
-      'humidity': instance.humidity,
     };
 
 Weather _$WeatherFromJson(Map<String, dynamic> json) => Weather(
@@ -46,12 +49,4 @@ Weather _$WeatherFromJson(Map<String, dynamic> json) => Weather(
 Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
       'description': instance.description,
       'icon': instance.icon,
-    };
-
-Wind _$WindFromJson(Map<String, dynamic> json) => Wind(
-      speed: (json['speed'] as num).toDouble(),
-    );
-
-Map<String, dynamic> _$WindToJson(Wind instance) => <String, dynamic>{
-      'speed': instance.speed,
     };

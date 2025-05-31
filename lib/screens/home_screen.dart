@@ -35,12 +35,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: const Text(
-                'May light walk with you on every path you tread.',
+                'May light guide your path.',
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey
                 ),
               ),
             ),
