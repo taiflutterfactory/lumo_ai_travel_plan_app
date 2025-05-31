@@ -14,17 +14,15 @@ abstract class GoogleMapApi {
   @GET("nearbysearch/json")
   Future<NearbyResponse> getNearbyPlaces({
     @Query("location") required String location, // ex: "25.0330,121.5654"
-    @Query("radius") int radius = 150,
+    @Query("radius") int radius = 5000,
     @Query("type") String type = "tourist_attraction",
     @Query("key") required String apiKey,
-    @Query("language") String language = "zh-TW",
   });
 
   // 取得景點明細
   @GET("details/json")
   Future<NearbyDetailResponse> getPlaceDetail({
     @Query("place_id") required String? placeId,
-    @Query("language") String language = "zh-TW",
     @Query("key") required String apiKey,
   });
 
@@ -32,17 +30,15 @@ abstract class GoogleMapApi {
   @GET("nearbysearch/json")
   Future<NearbyResponse> getNearbyFood({
     @Query("location") required String location, // ex: "25.0330,121.5654"
-    @Query("radius") int radius = 150,
+    @Query("radius") int radius = 5000,
     @Query("type") String type = "restaurant",
     @Query("key") required String apiKey,
-    @Query("language") String language = "zh-TW",
   });
 
   // 取得餐廳明細
   @GET("details/json")
   Future<NearbyDetailResponse> getFoodDetail({
     @Query("place_id") required String? placeId,
-    @Query("language") String language = "zh-TW",
     @Query("key") required String apiKey,
   });
 }

@@ -3,20 +3,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:lumo_ai_travel_plan_app/app_state.dart';
+import 'package:lumo_ai_travel_plan_app/widget/provider_widget.dart';
 import 'package:provider/provider.dart';
 import '../../globals.dart' as global;
 
-class RoutePlannerPage extends StatefulWidget {
+class MapDrawRouteScreen extends StatefulWidget {
   final LatLng destination;
 
-  const RoutePlannerPage({super.key, required this.destination});
+  const MapDrawRouteScreen({super.key, required this.destination});
 
   @override
-  _RoutePlannerPageState createState() => _RoutePlannerPageState();
+  _MapDrawRouteScreenState createState() => _MapDrawRouteScreenState();
 }
 
-class _RoutePlannerPageState extends State<RoutePlannerPage> {
+class _MapDrawRouteScreenState extends State<MapDrawRouteScreen> {
   GoogleMapController? mapController;
   Set<Polyline> _polylines = {};
   LatLng? startLocation;

@@ -26,6 +26,7 @@ NearbyDetailResult _$NearbyDetailResultFromJson(Map<String, dynamic> json) =>
       formatted_phone_number: json['formatted_phone_number'] as String?,
       website: json['website'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
+      user_ratings_total: (json['user_ratings_total'] as num?)?.toInt(),
       photos: (json['photos'] as List<dynamic>?)
           ?.map((e) => Photo.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -52,6 +53,7 @@ Map<String, dynamic> _$NearbyDetailResultToJson(NearbyDetailResult instance) =>
       'formatted_phone_number': instance.formatted_phone_number,
       'website': instance.website,
       'rating': instance.rating,
+      'user_ratings_total': instance.user_ratings_total,
       'photos': instance.photos,
       'opening_hours': instance.opening_hours,
       'editorial_summary': instance.editorial_summary,
