@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'nearby_response.g.dart';
@@ -21,6 +23,7 @@ class NearbyResult {
   final List<Photo>? photos;
   final String? vicinity;
   final double? rating;
+  int? user_ratings_total = 0;
 
   NearbyResult({
     required this.place_id,
@@ -29,6 +32,7 @@ class NearbyResult {
     this.photos,
     this.vicinity,
     this.rating,
+    this.user_ratings_total
   });
 
   factory NearbyResult.fromJson(Map<String, dynamic> json) =>

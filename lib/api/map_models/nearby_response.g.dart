@@ -29,6 +29,7 @@ NearbyResult _$NearbyResultFromJson(Map<String, dynamic> json) => NearbyResult(
           .toList(),
       vicinity: json['vicinity'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
+      user_ratings_total: (json['user_ratings_total'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$NearbyResultToJson(NearbyResult instance) =>
@@ -39,6 +40,7 @@ Map<String, dynamic> _$NearbyResultToJson(NearbyResult instance) =>
       'photos': instance.photos,
       'vicinity': instance.vicinity,
       'rating': instance.rating,
+      'user_ratings_total': instance.user_ratings_total,
     };
 
 Geometry _$GeometryFromJson(Map<String, dynamic> json) => Geometry(

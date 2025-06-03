@@ -1,15 +1,19 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lumo_ai_travel_plan_app/pages/home_page.dart';
+import 'package:lumo_ai_travel_plan_app/screens/app_layout_screen.dart';
+import 'package:lumo_ai_travel_plan_app/screens/home_screen.dart';
+import 'package:lumo_ai_travel_plan_app/widget/bottom_navigation_bar_layout.dart';
 import 'package:provider/provider.dart';
-import 'app_state.dart';
+
 import 'globals.dart' as global;
-import 'pages/sub_pages/attraction_main_page.dart';
-import 'pages/itinerary_page.dart';
-import 'pages/favorite_page.dart';
-import 'pages/settings_page.dart';
+import 'screens/favorite_screen.dart';
+import 'screens/itinerary_screen.dart';
+import 'screens/settings_screen.dart';
+import 'widget/provider_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,20 +32,41 @@ void main() async {
   runApp(
     MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => NaviGationBarProvider()),
-          ChangeNotifierProvider(create: (_) => SearchBarProvider()),
           ChangeNotifierProvider(create: (_) => LocationProvider()),        ],
-        child: const TravelPlanApp()
+        child: TravelPlanApp()
     )
   );
 }
 
 class TravelPlanApp extends StatelessWidget {
-  const TravelPlanApp({super.key});
+  TravelPlanApp({super.key});
+
+  final _router = GoRouter(
+    initialLocation: '/home',
+    routes: [
+      GoRoute(
+        path: '/home',
+        builder: (context, state) => const AppLayoutScreen(child: HomeScreen()),
+      ),
+      GoRoute(
+        path: '/itinerary',
+        builder: (context, state) => const AppLayoutScreen(child: ItineraryScreen()),
+      ),
+      GoRoute(
+        path: '/favorite',
+        builder: (context, state) => const AppLayoutScreen(child: FavoriteScreen()),
+      ),
+      GoRoute(
+        path: '/settings',
+        builder: (context, state) => const AppLayoutScreen(child: SettingsPage()),
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       debugShowCheckedModeBanner: false,
       title: "Flutter Bottom Navigation",
       theme: ThemeData(
@@ -49,31 +74,6 @@ class TravelPlanApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.kiwiMaruTextTheme()
       ),
-      home: MainPage(),
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-  MainPage({super.key});
-
-  final _pages = [
-    const HomePage(),
-    const ItineraryPage(),
-    const FavoritePage(),
-    const SettingsPage()
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    final appState = Provider.of<NaviGationBarProvider>(context);
-
-    return Scaffold(
-      appBar: null,
-      body: IndexedStack(
-        index: appState.selectedIndex,
-        children: _pages,
-      )
     );
   }
 }

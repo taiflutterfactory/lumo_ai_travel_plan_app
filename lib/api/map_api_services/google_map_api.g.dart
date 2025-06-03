@@ -29,7 +29,6 @@ class _GoogleMapApi implements GoogleMapApi {
     int radius = 5000,
     String type = "tourist_attraction",
     required String apiKey,
-    String language = "zh-TW",
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -37,7 +36,6 @@ class _GoogleMapApi implements GoogleMapApi {
       r'radius': radius,
       r'type': type,
       r'key': apiKey,
-      r'language': language,
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -71,13 +69,11 @@ class _GoogleMapApi implements GoogleMapApi {
   @override
   Future<NearbyDetailResponse> getPlaceDetail({
     String? placeId,
-    String language = "zh-TW",
     required String apiKey,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'place_id': placeId,
-      r'language': language,
       r'key': apiKey,
     };
     queryParameters.removeWhere((k, v) => v == null);
@@ -116,7 +112,6 @@ class _GoogleMapApi implements GoogleMapApi {
     int radius = 5000,
     String type = "restaurant",
     required String apiKey,
-    String language = "zh-TW",
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -124,7 +119,6 @@ class _GoogleMapApi implements GoogleMapApi {
       r'radius': radius,
       r'type': type,
       r'key': apiKey,
-      r'language': language,
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -158,13 +152,11 @@ class _GoogleMapApi implements GoogleMapApi {
   @override
   Future<NearbyDetailResponse> getFoodDetail({
     String? placeId,
-    String language = "zh-TW",
     required String apiKey,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'place_id': placeId,
-      r'language': language,
       r'key': apiKey,
     };
     queryParameters.removeWhere((k, v) => v == null);
