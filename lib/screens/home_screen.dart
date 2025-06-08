@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         selectedTab[0].toUpperCase() + selectedTab.substring(1),
                         style: TextStyle(
                           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                          fontSize: 15,
+                          fontSize: 16,
                           color: isSelected ? Colors.black : Colors.grey,
                         ),
                       ),
