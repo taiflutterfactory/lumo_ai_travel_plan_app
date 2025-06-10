@@ -1,74 +1,47 @@
-// models/weather_response.dart
 import 'package:json_annotation/json_annotation.dart';
-
 part 'weather_response.g.dart';
 
 @JsonSerializable()
 class WeatherResponse {
-  final Records records;
+  final Main main;
+  final List<Weather> weather;
+  final String name;
+  final Wind wind;
 
-  WeatherResponse({required this.records});
+  WeatherResponse({required this.main, required this.weather, required this.name, required this.wind});
 
-  factory WeatherResponse.fromJson(Map<String, dynamic> json) =>
-      _$WeatherResponseFromJson(json);
-  Map<String, dynamic> toJson() => _$WeatherResponseToJson(this);
+  factory WeatherResponse.fromJson(Map<String, dynamic> json) => _$WeatherResponseFromJson(json);
 }
 
 @JsonSerializable()
-class Records {
-  final List<Location> location;
+class Main {
+  final double temp;
+  @JsonKey(name: 'temp_min')
+  final double tempMin;
+  @JsonKey(name: 'temp_max')
+  final double tempMax;
+  final int humidity;
 
-  Records({required this.location});
+  Main({required this.temp, required this.tempMin, required this.tempMax, required this.humidity});
 
-  factory Records.fromJson(Map<String, dynamic> json) =>
-      _$RecordsFromJson(json);
-  Map<String, dynamic> toJson() => _$RecordsToJson(this);
+  factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
 }
 
 @JsonSerializable()
-class Location {
-  final String locationName;
-  final List<WeatherElement> weatherElement;
+class Weather {
+  final String description;
+  final String icon;
 
-  Location({required this.locationName, required this.weatherElement});
+  Weather({required this.description, required this.icon});
 
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
-  Map<String, dynamic> toJson() => _$LocationToJson(this);
+  factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
 }
 
 @JsonSerializable()
-class WeatherElement {
-  final String elementName;
-  final List<Time> time;
+class Wind {
+  final double speed;
 
-  WeatherElement({required this.elementName, required this.time});
+  Wind({required this.speed});
 
-  factory WeatherElement.fromJson(Map<String, dynamic> json) =>
-      _$WeatherElementFromJson(json);
-  Map<String, dynamic> toJson() => _$WeatherElementToJson(this);
-}
-
-@JsonSerializable()
-class Time {
-  final String startTime;
-  final String endTime;
-  final Parameter parameter;
-
-  Time({required this.startTime, required this.endTime, required this.parameter});
-
-  factory Time.fromJson(Map<String, dynamic> json) => _$TimeFromJson(json);
-  Map<String, dynamic> toJson() => _$TimeToJson(this);
-}
-
-@JsonSerializable()
-class Parameter {
-  final String parameterName;
-  final String? parameterValue;
-
-  Parameter({required this.parameterName, this.parameterValue});
-
-  factory Parameter.fromJson(Map<String, dynamic> json) =>
-      _$ParameterFromJson(json);
-  Map<String, dynamic> toJson() => _$ParameterToJson(this);
+  factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 }

@@ -51,6 +51,11 @@ class _AttractionMainScreenState extends State<AttractionMainScreen> {
 
     } catch (e) {
       print("Loading fail: $e");
+<<<<<<< HEAD
+=======
+      if (!mounted) return;
+
+>>>>>>> 9e2293553c76cc52d647f02890f2db86185d8a19
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Can\'t get the location：$e')),
       );

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+import '../weather_models/forecast_response.dart';
 import '../weather_models/weather_response.dart';
 import 'weather_api.dart';
 
@@ -26,9 +27,13 @@ class WeatherService {
     return WeatherService._internal(WeatherApi(dio));
   }
 
-  Future<WeatherResponse> fetchWeather(String city, String weatherApiKey) async {
-    print("taitest, $city, $weatherApiKey");
-    final result = await api.getWeather(location: city, weatherApiKey: weatherApiKey);
+  Future<WeatherResponse> fetchCurrentWeather(String city, String apiKey, String units, String lang) async {
+    final result = await api.getCurrentWeather(city, apiKey, units, lang);
+    return result;
+  }
+
+  Future<ForecastResponse> fetchForecast(String city, String apiKey, String units, String lang) async {
+    final result = await api.getForecast(city, apiKey, units, lang);
     return result;
   }
 }

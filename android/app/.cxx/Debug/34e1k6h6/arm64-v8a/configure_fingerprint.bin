@@ -2,6 +2,7 @@ C/C++ Structured Log^
 \
 Z/Users/meow/Developer/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txtC
 A
+<<<<<<< HEAD
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	üÔÑ·ò2¤ Ìò¦íå2Š
 ‡
 „/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/additional_project_files.txt	üÔÑ·ò2 Æº®¢í2‡
@@ -26,3 +27,29 @@ w/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/
 z/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/prefab_config.json	üÔÑ·ò2( Öº®¢í2„
 
 /Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/symbol_folder_index.txt	üÔÑ·ò2v ×º®¢í2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	¡ô„Ôó2¤ Ìò¦íå2Š
+‡
+„/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/additional_project_files.txt	¡ô„Ôó2 Æº®¢í2‡
+„
+/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/android_gradle_build.json	¡ô„Ôó2ÿ Ìº®¢í2Œ
+‰
+†/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/android_gradle_build_mini.json	¢ô„Ôó2Š Ôº®¢í2w
+u
+s/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/build.ninja	¢ô„Ôó2®Å …º®¢í2{
+y
+w/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/build.ninja.txt	¢ô„Ôó2€
+~
+|/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/build_file_index.txt	¢ô„Ôó2Z ×º®¢í2
+
+}/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/compile_commands.json	¢ô„Ôó2	‡
+„
+/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/compile_commands.json.bin	¢ô„Ôó2
+
+Š
+‡/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/metadata_generation_command.txt	¢ô„Ôó2	 Öº®¢í2~
+|
+z/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/prefab_config.json	¢ô„Ôó2( Öº®¢í2„
+
+/Users/meow/Documents/FlutterProjects/lumo_ai_travel_plan_app/android/app/.cxx/Debug/34e1k6h6/arm64-v8a/symbol_folder_index.txt	¢ô„Ôó2v ×º®¢í2
+>>>>>>> 9e2293553c76cc52d647f02890f2db86185d8a19
