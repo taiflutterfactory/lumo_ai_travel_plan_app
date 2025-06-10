@@ -6,10 +6,6 @@ import 'package:provider/provider.dart';
 import '../../api/map_models/nearby_response.dart';
 import '../../globals.dart' as globals;
 import '../../widget/provider_widget.dart';
-<<<<<<< HEAD
-import 'food_deatail_screen.dart';
-=======
->>>>>>> 9e2293553c76cc52d647f02890f2db86185d8a19
 
 class FoodMainScreen extends StatefulWidget {
   const FoodMainScreen({super.key});
