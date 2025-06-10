@@ -41,7 +41,4 @@ DerivedData/
 # 用來儲存環境變數與個人開發機敏資訊的檔案
 assets/.env
 android/gradle.properties
-<<<<<<< HEAD
-=======
 android/*.hprof
->>>>>>> 9e2293553c76cc52d647f02890f2db86185d8a19

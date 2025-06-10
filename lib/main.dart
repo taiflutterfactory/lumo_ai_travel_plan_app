@@ -22,8 +22,10 @@ void main() async {
     await dotenv.load(fileName: 'assets/.env');
     global.mapApiKey = dotenv.env['GOOGLE_API_KEY']!;
     global.weatherApiKey = dotenv.env['WEATHER_API_KEY']!;
+    global.rapidApi = dotenv.env['RAPID_API_KEY']!;
     print("✅ .env 成功載入：${dotenv.env['GOOGLE_API_KEY']}");
     print("✅ .env 成功載入：${dotenv.env['WEATHER_API_KEY']}");
+    print("✅ .env 成功載入：${dotenv.env['RAPID_API_KEY']}");
   } catch (e) {
     print("🚨 載入 .env 失敗：$e");
   }

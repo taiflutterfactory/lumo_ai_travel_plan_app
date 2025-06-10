@@ -16,7 +16,8 @@ abstract class CountryCityApi {
 
   @GET('cities')
   Future<CityResponse> getCitiesByCountry(
-    @Query('countryIds') String sort,
+    @Query('countryIds') String countryId,
     @Query('limit') int limit,
+    @Query('lang') int lang
   );
 }

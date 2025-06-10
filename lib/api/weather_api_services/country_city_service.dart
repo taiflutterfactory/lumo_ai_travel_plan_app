@@ -18,7 +18,7 @@ class CountryCityService {
     final dio = Dio(
       BaseOptions(
         headers: {
-          'X-RapidAPI-Key': globals.weatherApiKey,
+          'X-RapidAPI-Key': globals.rapidApi,
           'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
         },
         connectTimeout: const Duration(seconds: 10),
