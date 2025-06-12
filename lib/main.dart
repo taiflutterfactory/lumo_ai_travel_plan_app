@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lumo_ai_travel_plan_app/api/weather_api_services/weather_service.dart';
 import 'package:lumo_ai_travel_plan_app/screens/app_layout_screen.dart';
 import 'package:lumo_ai_travel_plan_app/screens/home_screen.dart';
+import 'package:lumo_ai_travel_plan_app/state_management/weahter_provider.dart';
 import 'package:lumo_ai_travel_plan_app/widget/bottom_navigation_bar_layout.dart';
 import 'package:provider/provider.dart';
 
@@ -16,16 +18,17 @@ import 'screens/settings_screen.dart';
 import 'widget/provider_widget.dart';
 
 void main() async {
+  WeatherService _weatherService = WeatherService.create();
   WidgetsFlutterBinding.ensureInitialized();
   print("📁 Current Directory: ${Directory.current.path}"); // 印出工作目錄
   try {
     await dotenv.load(fileName: 'assets/.env');
     global.mapApiKey = dotenv.env['GOOGLE_API_KEY']!;
     global.weatherApiKey = dotenv.env['WEATHER_API_KEY']!;
-    global.rapidApi = dotenv.env['RAPID_API_KEY']!;
+    // global.rapidApi = dotenv.env['RAPID_API_KEY']!;
     print("✅ .env 成功載入：${dotenv.env['GOOGLE_API_KEY']}");
     print("✅ .env 成功載入：${dotenv.env['WEATHER_API_KEY']}");
-    print("✅ .env 成功載入：${dotenv.env['RAPID_API_KEY']}");
+    // print("✅ .env 成功載入：${dotenv.env['RAPID_API_KEY']}");
   } catch (e) {
     print("🚨 載入 .env 失敗：$e");
   }
@@ -34,7 +37,9 @@ void main() async {
   runApp(
     MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => LocationProvider()),        ],
+          ChangeNotifierProvider(create: (_) => LocationProvider()),
+          ChangeNotifierProvider(create: (_) => WeatherProvider(_weatherService)),
+        ],
         child: TravelPlanApp()
     )
   );

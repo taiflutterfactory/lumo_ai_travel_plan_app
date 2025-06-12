@@ -1,28 +1,21 @@
-// services/weather_api.dart
-import 'package:retrofit/retrofit.dart';
+
 import 'package:dio/dio.dart';
-import '../weather_models/forecast_response.dart';
+import 'package:retrofit/error_logger.dart';
+import 'package:retrofit/http.dart';
+
 import '../weather_models/weather_response.dart';
 
 part 'weather_api.g.dart';
 
-@RestApi(baseUrl: "https://api.openweathermap.org/data/2.5/")
+@RestApi(baseUrl: "https://opendata.cwa.gov.tw/api/v1/rest/datastore/")
 abstract class WeatherApi {
   factory WeatherApi(Dio dio, {String baseUrl}) = _WeatherApi;
 
-  @GET("weather")
-  Future<WeatherResponse> getCurrentWeather(
-      @Query("q") String city,
-      @Query("appid") String apiKey,
-      @Query("units") String units,
-      @Query("lang") String lang,
-  );
-
-  @GET("forecast")
-  Future<ForecastResponse> getForecast(
-      @Query("q") String city,
-      @Query("appid") String apiKey,
-      @Query("units") String units,
-      @Query("lang") String lang,
-  );
+  // 三天天氣預報(鄉鎮)
+  @GET("F-D0047-089")
+  Future<WeatherResponse> getWeather(
+    @Query("Authorization") String apiKey,
+    @Query("locationName") String locationName,
+    @Query("format") String format
+    );
 }

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import '../../globals.dart' as globals;
-import '../weather_models/forecast_response.dart';
 import '../weather_models/weather_response.dart';
 import 'weather_api.dart';
 
@@ -29,13 +28,8 @@ class WeatherService {
     return WeatherService._internal(WeatherApi(dio));
   }
 
-  Future<WeatherResponse> fetchCurrentWeather(String city, String units, String lang) async {
-    final result = await api.getCurrentWeather(city, weatherApiKey, units, lang);
-    return result;
-  }
-
-  Future<ForecastResponse> fetchForecast(String city, String units, String lang) async {
-    final result = await api.getForecast(city, weatherApiKey, units, lang);
+  Future<WeatherResponse> getWeather(String apiKey, String locationName, String format) async {
+    final result = await api.getWeather(apiKey, locationName, format);
     return result;
   }
 }

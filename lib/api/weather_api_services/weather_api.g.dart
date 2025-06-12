@@ -14,7 +14,7 @@ class _WeatherApi implements WeatherApi {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://api.openweathermap.org/data/2.5/';
+    baseUrl ??= 'https://opendata.cwa.gov.tw/api/v1/rest/datastore/';
   }
 
   final Dio _dio;
@@ -24,18 +24,16 @@ class _WeatherApi implements WeatherApi {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<WeatherResponse> getCurrentWeather(
-    String city,
+  Future<WeatherResponse> getWeather(
     String apiKey,
-    String units,
-    String lang,
+    String locationName,
+    String format,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'q': city,
-      r'appid': apiKey,
-      r'units': units,
-      r'lang': lang,
+      r'Authorization': apiKey,
+      r'locationName': locationName,
+      r'format': format,
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
@@ -46,7 +44,7 @@ class _WeatherApi implements WeatherApi {
     )
         .compose(
           _dio.options,
-          'weather',
+          'F-D0047-089',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -59,49 +57,6 @@ class _WeatherApi implements WeatherApi {
     late WeatherResponse _value;
     try {
       _value = WeatherResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<ForecastResponse> getForecast(
-    String city,
-    String apiKey,
-    String units,
-    String lang,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'q': city,
-      r'appid': apiKey,
-      r'units': units,
-      r'lang': lang,
-    };
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ForecastResponse>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'forecast',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ForecastResponse _value;
-    try {
-      _value = ForecastResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

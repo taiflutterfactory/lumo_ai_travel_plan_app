@@ -8,50 +8,80 @@ part of 'weather_response.dart';
 
 WeatherResponse _$WeatherResponseFromJson(Map<String, dynamic> json) =>
     WeatherResponse(
-      main: Main.fromJson(json['main'] as Map<String, dynamic>),
-      weather: (json['weather'] as List<dynamic>)
-          .map((e) => Weather.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      name: json['name'] as String,
-      wind: Wind.fromJson(json['wind'] as Map<String, dynamic>),
+      records: Records.fromJson(json['records'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$WeatherResponseToJson(WeatherResponse instance) =>
     <String, dynamic>{
-      'main': instance.main,
-      'weather': instance.weather,
-      'name': instance.name,
-      'wind': instance.wind,
+      'records': instance.records,
     };
 
-Main _$MainFromJson(Map<String, dynamic> json) => Main(
-      temp: (json['temp'] as num).toDouble(),
-      tempMin: (json['temp_min'] as num).toDouble(),
-      tempMax: (json['temp_max'] as num).toDouble(),
-      humidity: (json['humidity'] as num).toInt(),
+Records _$RecordsFromJson(Map<String, dynamic> json) => Records(
+      locations: (json['locations'] as List<dynamic>)
+          .map((e) => Locations.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
-      'temp': instance.temp,
-      'temp_min': instance.tempMin,
-      'temp_max': instance.tempMax,
-      'humidity': instance.humidity,
+Map<String, dynamic> _$RecordsToJson(Records instance) => <String, dynamic>{
+      'locations': instance.locations,
     };
 
-Weather _$WeatherFromJson(Map<String, dynamic> json) => Weather(
-      description: json['description'] as String,
-      icon: json['icon'] as String,
+Locations _$LocationsFromJson(Map<String, dynamic> json) => Locations(
+      location: (json['location'] as List<dynamic>)
+          .map((e) => Location.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$WeatherToJson(Weather instance) => <String, dynamic>{
-      'description': instance.description,
-      'icon': instance.icon,
+Map<String, dynamic> _$LocationsToJson(Locations instance) => <String, dynamic>{
+      'location': instance.location,
     };
 
-Wind _$WindFromJson(Map<String, dynamic> json) => Wind(
-      speed: (json['speed'] as num).toDouble(),
+Location _$LocationFromJson(Map<String, dynamic> json) => Location(
+      locationName: json['locationName'] as String,
+      weatherElement: (json['weatherElement'] as List<dynamic>)
+          .map((e) => WeatherElement.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$WindToJson(Wind instance) => <String, dynamic>{
-      'speed': instance.speed,
+Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
+      'locationName': instance.locationName,
+      'weatherElement': instance.weatherElement,
+    };
+
+WeatherElement _$WeatherElementFromJson(Map<String, dynamic> json) =>
+    WeatherElement(
+      elementName: json['elementName'] as String,
+      time: (json['time'] as List<dynamic>)
+          .map((e) => Time.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$WeatherElementToJson(WeatherElement instance) =>
+    <String, dynamic>{
+      'elementName': instance.elementName,
+      'time': instance.time,
+    };
+
+Time _$TimeFromJson(Map<String, dynamic> json) => Time(
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+      elementValue:
+          ElementValue.fromJson(json['elementValue'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$TimeToJson(Time instance) => <String, dynamic>{
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'elementValue': instance.elementValue,
+    };
+
+ElementValue _$ElementValueFromJson(Map<String, dynamic> json) => ElementValue(
+      value: json['value'] as String,
+      measures: json['measures'] as String,
+    );
+
+Map<String, dynamic> _$ElementValueToJson(ElementValue instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'measures': instance.measures,
     };
