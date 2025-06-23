@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../api/map_models/nearby_response.dart';
 import '../../globals.dart' as globals;
-import '../../widget/provider_widget.dart';
+import '../../providers/location_provider.dart';
 
 class AttractionMainScreen extends StatefulWidget {
   const AttractionMainScreen({super.key});

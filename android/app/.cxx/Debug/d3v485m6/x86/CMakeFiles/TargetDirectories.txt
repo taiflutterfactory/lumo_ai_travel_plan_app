@@ -1,0 +1,2 @@
+D:/FlutterProjects/lumo_ai_travel_plan_app/code/android/app/.cxx/Debug/d3v485m6/x86/CMakeFiles/edit_cache.dir
+D:/FlutterProjects/lumo_ai_travel_plan_app/code/android/app/.cxx/Debug/d3v485m6/x86/CMakeFiles/rebuild_cache.dir

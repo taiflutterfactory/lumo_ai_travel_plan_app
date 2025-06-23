@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lumo_ai_travel_plan_app/providers/itinerary_provider.dart';
 import 'package:lumo_ai_travel_plan_app/screens/app_layout_screen.dart';
 import 'package:lumo_ai_travel_plan_app/screens/home_screen.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ import 'globals.dart' as global;
 import 'screens/favorite_screen.dart';
 import 'screens/itinerary_screen.dart';
 import 'screens/settings_screen.dart';
-import 'widget/provider_widget.dart';
+import 'providers/location_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +21,9 @@ void main() async {
   try {
     await dotenv.load(fileName: 'assets/.env');
     global.mapApiKey = dotenv.env['GOOGLE_API_KEY']!;
-    global.weatherApiKey = dotenv.env['WEATHER_API_KEY']!;
-    // global.rapidApi = dotenv.env['RAPID_API_KEY']!;
+    global.chatGptApiKey = dotenv.env['CHAT_GPT_API_KEY']!;
     print("✅ .env 成功載入：${dotenv.env['GOOGLE_API_KEY']}");
+    print("✅ .env 成功載入：${dotenv.env['CHAT_GPT_API_KEY']}");
   } catch (e) {
     print("🚨 載入 .env 失敗：$e");
   }
@@ -32,6 +33,7 @@ void main() async {
     MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => LocationProvider()),
+          ChangeNotifierProvider(create: (_) => ItineraryProvider()),
         ],
         child: TravelPlanApp()
     )
