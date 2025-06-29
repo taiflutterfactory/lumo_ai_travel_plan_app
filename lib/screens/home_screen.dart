@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     // 根據 tab 切換頁面
     switch (tab) {
       case 'attraction':
-        return const AttractionMainScreen();
+        return const AttractionMainScreen(); // 景點頁籤
       case 'bites':
-        return const FoodMainScreen();
+        return const FoodMainScreen(); // 餐廳頁籤
       default:
         return const Center(child: Text('Unknown tab'),);
     }
