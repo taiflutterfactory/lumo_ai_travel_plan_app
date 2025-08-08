@@ -3,6 +3,7 @@ import 'package:lumo_ai_travel_plan_app/screens/sub_screens/favorite_attraction_
 import 'package:lumo_ai_travel_plan_app/screens/sub_screens/favorite_food_main_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../generated/l10n.dart';
 import '../widget/bottom_navigation_bar_layout.dart';
 
 class FavoriteScreen extends StatefulWidget {
@@ -13,18 +14,25 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  final List<String> tab = ['attraction', 'bites'];
-  String optionTab = 'attraction';
+  final List<String> _tabKeys = ['attraction', 'bites'];
+  String _currentTab = 'attraction';
 
-  // 根據頁籤切換對應的 Widget
-  Widget getTabWidget(String tab) {
-    switch (tab) {
+  // 用一個 Map 把 key 跟對應的 Widget 綁在一起
+  final Map<String, Widget> _tabPages = {
+    'attraction': const FavoriteAttractionMainScreen(),
+    'bites': const FavoriteFoodMainScreen(),
+  };
+
+  // 根據 key 回傳對應的 Widget
+  String _labelFor(String key) {
+    final loc = S.of(context);
+    switch (key) {
       case 'attraction':
-        return const FavoriteAttractionMainScreen(); // 收藏景點頁籤
+        return loc.Attraction; // e.g. 「景點」或「Attractions」
       case 'bites':
-        return const FavoriteFoodMainScreen(); // 收藏餐廳頁籤
+        return loc.Bites;      // e.g. 「美食」或「Bites」
       default:
-        return const Center(child: Text('Unknown tab'),);
+        return key;
     }
   }
 
@@ -40,23 +48,20 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
-                children: List.generate(tab.length, (index) {
-                  final selectedTab = tab[index];
-                  final isSelected = selectedTab == optionTab;
-
+                children: _tabKeys.map((key) {
+                  final isSelected = key == _currentTab;
                   return Expanded(
                     child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          optionTab = selectedTab; // 點擊頁籤時切換
-                        });
-                      },
+                      onTap: () => setState(() => _currentTab = key),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 250),
                         margin: const EdgeInsets.symmetric(horizontal: 8),
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.white : Colors.transparent,
+                          color: isSelected
+                              ? Colors.white
+                              : Colors.transparent,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: isSelected
                             ? [
@@ -64,28 +69,30 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 color: Colors.black12,
                                 offset: Offset(0, 2),
                                 blurRadius: 6,
-                                spreadRadius: 1,
                               )
-                          ]
-                            :[],
+                            ]
+                                : [],
                         ),
                         child: Center(
                           child: Text(
-                            selectedTab[0].toUpperCase() + selectedTab.substring(1),
+                            _labelFor(key),
                             style: TextStyle(
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                               fontSize: 16,
-                              color: isSelected ? Colors.black : Colors.grey,
+                              color: isSelected
+                                ? Colors.black
+                                : Colors.grey,
                             ),
                           ),
                         ),
                       ),
-                    )
+                    ),
                   );
-                }),
+                }).toList(),
               ),
             ),
-
             // 根據頁籤選擇顯示不同內容
             Expanded(
               child: LayoutBuilder(
@@ -93,7 +100,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   return SingleChildScrollView(
                     child: SizedBox(
                       height: 500,
-                      child: getTabWidget(optionTab),
+                      child: _tabPages[_currentTab]!,
                     ),
                   );
                 }

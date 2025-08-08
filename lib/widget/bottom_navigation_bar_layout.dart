@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../generated/l10n.dart';
+
 class BottomNavigationBarLayout extends StatelessWidget {
   final Widget child;
   const BottomNavigationBarLayout({super.key, required this.child});
@@ -29,11 +31,11 @@ class BottomNavigationBarLayout extends StatelessWidget {
         onTap: (index) {
           context.go(tabs[index]);
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: "Itinerary"),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Setting"),
+        items: [
+          BottomNavigationBarItem(icon: const Icon(Icons.home), label: S.of(context).Home,),
+          BottomNavigationBarItem(icon: Icon(Icons.schedule), label: S.of(context).Itinerary),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: S.of(context).Favorite),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: S.of(context).Settings),
         ],
         backgroundColor: const Color(0xFF8C736F),
         selectedItemColor: const Color(0xFF97A5C0),

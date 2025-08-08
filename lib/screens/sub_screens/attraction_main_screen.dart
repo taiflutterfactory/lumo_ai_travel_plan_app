@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../api/map_models/nearby_response.dart';
+import '../../generated/l10n.dart';
 import '../../globals.dart' as globals;
 import '../../providers/location_provider.dart';
 
@@ -100,8 +101,8 @@ class _AttractionMainScreenState extends State<AttractionMainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Popular places',
+              Text(
+                S.of(context).PopularPlaces,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -144,8 +145,8 @@ class _AttractionMainScreenState extends State<AttractionMainScreen> {
                   ),
                 ],
               ),
-              const Text(
-                'Favorite places',
+              Text(
+                S.of(context).FavoritePlaces,
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -302,7 +303,7 @@ class _PopularPlacesListTileState extends State<PopularPlacesListTile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.result.name ?? "No name place!",
+                        widget.result.name ?? "${S.of(context).NoNamePlace}!",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -435,7 +436,7 @@ class _FavoritePlacesListTileState extends State<FavoritePlacesListTile> {
         )
             : const Icon(Icons.location_on, size: 40, color: Colors.grey),
         title: Text(
-          widget.result.name ?? "No name place!",
+          widget.result.name ?? "${S.of(context).NoNamePlace}!",
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Column(

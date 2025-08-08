@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../generated/l10n.dart';
+
 class AppLayoutScreen extends StatelessWidget {
   final Widget child;
 
@@ -67,43 +69,43 @@ class AppLayoutScreen extends StatelessWidget {
                       }
                     },
                     itemBuilder: (BuildContext context) => [
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'home',
                         child: Row(
                           children: [
                             Icon(Icons.home),
                             SizedBox(width: 2,),
-                            Text('Home'),
+                            Text(S.of(context).Home),
                           ],
                         )
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'itinerary',
                         child: Row(
                           children: [
                             Icon(Icons.map),
                             SizedBox(width: 2,),
-                            Text('Itinerary'),
+                            Text(S.of(context).Itinerary),
                           ],
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'favorite',
                         child: Row(
                           children: [
                             Icon(Icons.favorite),
                             SizedBox(width: 2,),
-                            Text('Favorite'),
+                            Text(S.of(context).Favorite),
                           ],
                         ),
                       ),
-                      const PopupMenuItem<String>(
+                      PopupMenuItem<String>(
                         value: 'settings',
                         child: Row(
                           children: [
                             Icon(Icons.settings),
                             SizedBox(width: 2,),
-                            Text('Settings'),
+                            Text(S.of(context).Settings),
                           ],
                         ),
                       ),

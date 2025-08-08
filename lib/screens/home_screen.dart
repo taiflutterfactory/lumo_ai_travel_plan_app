@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lumo_ai_travel_plan_app/screens/sub_screens/attraction_main_screen.dart';
 import 'package:lumo_ai_travel_plan_app/screens/sub_screens/food_main_screen.dart';
 
+import '../generated/l10n.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -10,18 +12,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
-  final List<String> tab = ['attraction', 'bites'];
-  String optionTab = 'attraction';
+  final List<String> _tabKeys = ['attraction', 'bites'];
+  String _currentTab = 'attraction';
 
-  Widget getTabWidget(String tab) {
-    // 根據 tab 切換頁面
-    switch (tab) {
+  // 用一個 Map 把 key 跟對應的 Widget 綁在一起
+  final Map<String, Widget> _tabPages = {
+    'attraction': const AttractionMainScreen(),
+    'bites': const FoodMainScreen(),
+  };
+
+  // 根據 key 回傳多語系標籤
+  String _labelFor(String key) {
+    final loc = S.of(context);
+    switch (key) {
       case 'attraction':
-        return const AttractionMainScreen(); // 景點頁籤
+        return loc.Attraction; // e.g. 「景點」或「Attractions」
       case 'bites':
-        return const FoodMainScreen(); // 餐廳頁籤
+        return loc.Bites;      // e.g. 「美食」或「Bites」
       default:
-        return const Center(child: Text('Unknown tab'),);
+        return key;
     }
   }
 
@@ -48,23 +57,20 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
-                children: List.generate(tab.length, (index) {
-                  final selectedTab = tab[index];
-                  final isSelected = selectedTab == optionTab;
-
+                children: _tabKeys.map((key) {
+                  final isSelected = key == _currentTab;
                   return Expanded(
                     child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          optionTab = selectedTab;
-                        });
-                      },
+                      onTap: () => setState(() => _currentTab = key),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 250),
-                        margin: const EdgeInsets.symmetric(horizontal: 8), // 控制按鈕間距
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 12),
                         decoration: BoxDecoration(
-                          color: isSelected ? Colors.white : Colors.transparent,
+                          color: isSelected
+                              ? Colors.white
+                              : Colors.transparent,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: isSelected
                               ? [
@@ -72,25 +78,28 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               color: Colors.black12,
                               offset: Offset(0, 2),
                               blurRadius: 6,
-                              spreadRadius: 1,
                             )
                           ]
                               : [],
                         ),
                         child: Center(
                           child: Text(
-                            selectedTab[0].toUpperCase() + selectedTab.substring(1),
+                            _labelFor(key),        // 這裡使用多語系標籤
                             style: TextStyle(
-                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
                               fontSize: 16,
-                              color: isSelected ? Colors.black : Colors.grey,
+                              color: isSelected
+                                  ? Colors.black
+                                  : Colors.grey,
                             ),
                           ),
                         ),
                       ),
                     ),
                   );
-                }),
+                }).toList(),
               ),
             ),
             // tab 切換的頁面
@@ -100,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     return SingleChildScrollView(
                       child: SizedBox(
                         height: 500,
-                        child: getTabWidget(optionTab),
+                        child: _tabPages[_currentTab]!,
                       ),
                     );
                   }

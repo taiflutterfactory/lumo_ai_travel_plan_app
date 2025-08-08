@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../api/map_models/nearby_response.dart';
+import '../../generated/l10n.dart';
 import '../../globals.dart' as globals;
 import '../../providers/location_provider.dart';
 
@@ -100,8 +101,8 @@ class _FoodMainScreenState extends State<FoodMainScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Popular restaurant',
+                Text(
+                  S.of(context).PopularRestaurant,
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -144,8 +145,8 @@ class _FoodMainScreenState extends State<FoodMainScreen> {
                     ),
                   ],
                 ),
-                const Text(
-                  'Favorite restaurant',
+                Text(
+                  S.of(context).FavoriteRestaurant,
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -302,7 +303,7 @@ class _PopularRestaurantListTileState extends State<PopularRestaurantListTile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.result.name ?? "No name restaurant!",
+                        widget.result.name ?? "${S.of(context).NoNameRestaurant}!",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -431,7 +432,7 @@ class _FavoriteRestaurantListTileState extends State<FavoriteRestaurantListTile>
         )
             : const Icon(Icons.location_on, size: 40, color: Colors.grey),
         title: Text(
-          widget.result.name ?? "No name restaurant!",
+          widget.result.name ?? "${S.of(context).NoNameRestaurant}!",
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Column(
