@@ -27,6 +27,7 @@
 API 整合：Google Maps Places API（附近地點搜尋、地點詳情、OpenAI ChatGPT API（AI 行程規劃）
 定位服務：Google Geolocation & Geocoding
 多語系管理：Flutter Intl (i18n & l10n)
+UI：Jetpack Compose 風格的 Flutter UI（Material 3）
 
 # 🏞️應用場景
 國內外自助旅行快速找餐廳與景點
