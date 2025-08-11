@@ -25,7 +25,7 @@
 ## 🌟開發技術
 前端開發：Flutter (Dart)，支援跨平台（Android / iOS）<br>
 狀態管理：Provider<br>
-API 整合：Google Maps Places API（附近地點搜尋、地點詳情、OpenAI ChatGPT API（AI 行程規劃）<br>
+API 整合：Google Maps Places API（附近地點搜尋 & 地點詳情)、OpenAI ChatGPT API（AI 行程規劃）<br>
 定位服務：Google Geolocation & Geocoding<br>
 多語系管理：Flutter Intl (i18n & l10n)<br>
 UI：Jetpack Compose 風格的 Flutter UI（Material 3）
