@@ -1,5 +1,6 @@
 # ✈️作品名稱
-## 智慧旅遊規劃與探索 App
+## 智能旅遊規劃 App
+Lumo AI Travel Planner
 
 # 🪄作品簡介
 這是一款結合 Google Maps API Places 與 OpenAI ChatGPT API 的智慧旅遊 App，能根據使用者的即時位置，提供 5 公里內的景點與餐廳資訊，並支援多語系切換（繁體中文 / 簡體中文 / 英文），適合國內外旅遊使用。
