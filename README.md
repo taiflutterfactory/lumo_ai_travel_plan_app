@@ -22,15 +22,15 @@
 點擊地點可查看 Google Maps 詳細資訊、導航路線與評價。
 
 ## 🌟開發技術
-前端開發：Flutter (Dart)，支援跨平台（Android / iOS）
-狀態管理：Provider
-API 整合：Google Maps Places API（附近地點搜尋、地點詳情、OpenAI ChatGPT API（AI 行程規劃）
-定位服務：Google Geolocation & Geocoding
-多語系管理：Flutter Intl (i18n & l10n)
+前端開發：Flutter (Dart)，支援跨平台（Android / iOS）<br>
+狀態管理：Provider<br>
+API 整合：Google Maps Places API（附近地點搜尋、地點詳情、OpenAI ChatGPT API（AI 行程規劃）<br>
+定位服務：Google Geolocation & Geocoding<br>
+多語系管理：Flutter Intl (i18n & l10n)<br>
 UI：Jetpack Compose 風格的 Flutter UI（Material 3）
 
 # 🏞️應用場景
-國內外自助旅行快速找餐廳與景點
-根據當下位置即時探索周邊景點
-自動生成旅遊行程，減少出行規劃時間
+國內外自助旅行快速找餐廳與景點<br>
+根據當下位置即時探索周邊景點<br>
+自動生成旅遊行程，減少出行規劃時間<br>
 作為旅遊紀錄與收藏工具
